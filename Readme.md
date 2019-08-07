@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Тимофей Пономарев](https://up.htmlacademy.ru/ecmascript/9/user/903857).
-* Наставник: `Алексей Белявский`.
+* Наставник: [Алексей Белявский](https://htmlacademy.ru/profile/id666435).
 
 ---
 
