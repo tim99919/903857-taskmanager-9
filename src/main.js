@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  const mainSection = document.body.querySelector('.main');
-  const mainControlMenu = mainSection.querySelector('.control');
+  const mainSection = document.body.querySelector(`.main`);
+  const mainControlMenu = mainSection.querySelector(`.control`);
 
   const componentMarkups = {
     menuSection: `
@@ -405,7 +405,7 @@
     </article>
   `,
     loadMoreButton: `<button class="load-more" type="button">load more</button>`,
-    getBoardSectionMarkup: function (content) {
+    getBoardSectionMarkup(content) {
       return `
       <section class="board container">
         <div class="board__tasks">
@@ -414,9 +414,9 @@
         </div>
         ${this.loadMoreButton}
       <section>
-    `
+    `;
     },
-    renderTaskCards: function (cardsCount) {
+    renderTaskCards(cardsCount) {
       let taskCards = ``;
       while (cardsCount !== 0) {
         taskCards += `${this.taskCard}`;
@@ -426,7 +426,7 @@
     }
   };
 
-  const components = {
+  const componentsCollection = {
     menuSection: new Component(componentMarkups.menuSection, mainControlMenu),
     searchSection: new Component(componentMarkups.searchSection, mainSection),
     filtersSection: new Component(componentMarkups.filtersSection, mainSection),
@@ -436,16 +436,18 @@
   function Component(markup, container) {
     this.markup = markup;
     this.container = container;
-  };
+  }
 
   const renderComponents = (components) => {
     if (components === {}) {
       return;
     }
     for (const component in components) {
-      components[component].container.insertAdjacentHTML('beforeend', components[component].markup);
+      if (Object.prototype.hasOwnProperty.call(components, component)) {
+        components[component].container.insertAdjacentHTML(`beforeend`, components[component].markup);
+      }
     }
   };
 
-  renderComponents(components);
+  renderComponents(componentsCollection);
 })();
