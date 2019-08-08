@@ -412,6 +412,7 @@
           ${this.taskCardForm}
           ${content}
         </div>
+        ${this.loadMoreButton}
       <section>
     `
     },
@@ -430,7 +431,6 @@
     searchSection: new Component(componentMarkups.searchSection, mainSection),
     filtersSection: new Component(componentMarkups.filtersSection, mainSection),
     boardSection: new Component(componentMarkups.getBoardSectionMarkup(componentMarkups.renderTaskCards(2)), mainSection),
-    loadMoreButton: new Component(componentMarkups.loadMoreButton, mainSection)
   };
 
   function Component(markup, container) {
