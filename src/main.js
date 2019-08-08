@@ -1,34 +1,35 @@
+// const components = {
+//   menuSection:
+// }
+
 const menuSection = `
-  <section class="main__control control container">
-    <h1 class="control__title">TASKMANAGER</h1>
-    <section class="control__btn-wrap">
-      <input
-        type="radio"
-        name="control"
-        id="control__new-task"
-        class="control__input visually-hidden"
-      />
-      <label for="control__new-task" class="control__label control__label--new-task"
-        >+ ADD NEW TASK</label
-      >
-      <input
-        type="radio"
-        name="control"
-        id="control__task"
-        class="control__input visually-hidden"
-        checked
-      />
-      <label for="control__task" class="control__label">TASKS</label>
-      <input
-        type="radio"
-        name="control"
-        id="control__statistic"
-        class="control__input visually-hidden"
-      />
-      <label for="control__statistic" class="control__label"
-        >STATISTICS</label
-      >
-    </section>
+  <section class="control__btn-wrap">
+    <input
+      type="radio"
+      name="control"
+      id="control__new-task"
+      class="control__input visually-hidden"
+    />
+    <label for="control__new-task" class="control__label control__label--new-task"
+      >+ ADD NEW TASK</label
+    >
+    <input
+      type="radio"
+      name="control"
+      id="control__task"
+      class="control__input visually-hidden"
+      checked
+    />
+    <label for="control__task" class="control__label">TASKS</label>
+    <input
+      type="radio"
+      name="control"
+      id="control__statistic"
+      class="control__input visually-hidden"
+    />
+    <label for="control__statistic" class="control__label"
+      >STATISTICS</label
+    >
   </section>
 `;
 
@@ -409,4 +410,31 @@ const taskCardForm = `
 
 const loadMoreButton = `<button class="load-more" type="button">load more</button>`;
 
+// const boardContainer = `<section class="board container"></section>`;
 
+const mainSection = document.body.querySelector('.main');
+const mainControlMenu = mainSection.querySelector('.control');
+
+const addComponent = (component, container = document.body) => {
+  if (!component) {
+    return;
+  }
+  container.insertAdjacentHTML("beforeend", component);
+};
+
+const renderBoardContent = () => {
+  return `
+    <section class="board container">
+      <div class="board__tasks">
+        ${taskCardForm}
+        ${taskCard}
+        ${taskCard}
+      </div>
+    <section>
+  `;
+};
+
+addComponent(menuSection, mainControlMenu);
+addComponent(searchSection, mainSection);
+addComponent(filtersSection, mainSection);
+addComponent(renderBoardContent(), mainSection);
