@@ -4,6 +4,8 @@
   const mainSection = document.body.querySelector(`.main`);
   const mainControlMenu = mainSection.querySelector(`.control`);
 
+  const taskCardsCount = 2;
+
   const componentMarkups = {
     menuSection: `
     <section class="control__btn-wrap">
@@ -418,7 +420,7 @@
     },
     renderTaskCards(cardsCount) {
       let taskCards = ``;
-      while (cardsCount !== 0) {
+      while (isFinite(cardsCount) && cardsCount > 0) {
         taskCards += `${this.taskCard}`;
         cardsCount--;
       }
@@ -426,22 +428,19 @@
     }
   };
 
+  const Component = function (markup, container) {
+    this.markup = markup;
+    this.container = container;
+  };
+
   const componentsCollection = {
     menuSection: new Component(componentMarkups.menuSection, mainControlMenu),
     searchSection: new Component(componentMarkups.searchSection, mainSection),
     filtersSection: new Component(componentMarkups.filtersSection, mainSection),
-    boardSection: new Component(componentMarkups.getBoardSectionMarkup(componentMarkups.renderTaskCards(2)), mainSection),
+    boardSection: new Component(componentMarkups.getBoardSectionMarkup(componentMarkups.renderTaskCards(taskCardsCount)), mainSection),
   };
 
-  function Component(markup, container) {
-    this.markup = markup;
-    this.container = container;
-  }
-
   const renderComponents = (components) => {
-    if (components === {}) {
-      return;
-    }
     for (const component in components) {
       if (Object.prototype.hasOwnProperty.call(components, component)) {
         components[component].container.insertAdjacentHTML(`beforeend`, components[component].markup);
